@@ -1,4 +1,4 @@
-package org.lolobored.revolut;
+package org.lolobored.revolut.csv;
 
 import com.opencsv.bean.CsvBindByPosition;
 import lombok.Data;

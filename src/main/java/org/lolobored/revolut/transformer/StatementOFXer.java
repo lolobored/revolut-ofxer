@@ -1,4 +1,7 @@
-package org.lolobored.revolut;
+package org.lolobored.revolut.transformer;
+
+import org.lolobored.revolut.model.Statement;
+import org.lolobored.revolut.model.Transaction;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;

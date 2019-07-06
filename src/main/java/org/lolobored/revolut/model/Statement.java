@@ -1,4 +1,4 @@
-package org.lolobored.revolut;
+package org.lolobored.revolut.model;
 
 import lombok.Data;
 

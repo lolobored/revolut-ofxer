@@ -1,9 +1,12 @@
-package org.lolobored.revolut;
+package org.lolobored.revolut.csv;
 
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.apache.commons.lang3.StringUtils;
+import org.lolobored.revolut.model.Statement;
+import org.lolobored.revolut.transformer.StatementOFXer;
+import org.lolobored.revolut.model.Transaction;
 
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -20,13 +23,7 @@ public class CSVParser {
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy MMMMMMMMMMMM dd");
 	private static SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
 
-	public static void main(String[] args) throws Exception {
-		CSVParser parser = new CSVParser();
-
-		parser.transformRevolutCSVToOFX(args[0]);
-	}
-
-	public void transformRevolutCSVToOFX(String csvPath) throws Exception {
+	public String transformRevolutCSVToOFX(String csvPath) throws Exception {
 
 		String thisYear = yearFormat.format(new Date());
 		String parentFolder = Paths.get(csvPath).getParent().toString();
@@ -57,8 +54,7 @@ public class CSVParser {
 String resultingFile= parentFolder+"/"+statement.getCurrency().toLowerCase()+".ofx";
 		Path targetFile= Paths.get(resultingFile);
 		Files.write( targetFile, StatementOFXer.writeOfx(statement).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-		// echo the resulting file so that it can be used in automator
-		System.out.println(resultingFile);
+		return resultingFile;
 	}
 
 	private List<RevolutCSVLine> beanBuilderExample(Path path, Class clazz) throws Exception {
