@@ -49,5 +49,5 @@ The Automator Application on macOS will use the following steps:
     end run    
     ```
     
-![Automator](/images/automator.png)
+![Automator](images/automator.png)
 
